@@ -35,7 +35,7 @@ public class NotesRepository : INotesRepository
             new () { Name = "@id", Value = id }
         };
 
-        _provider.ExecuteNonQuery("DeleteNote", args);
+        _provider.ExecuteCommand("DeleteNote", args);
     }
 
     public bool Exists(int id)
@@ -94,6 +94,6 @@ public class NotesRepository : INotesRepository
             new () { Name = "@body", Value = obj.Body }
         };
 
-        _provider.ExecuteNonQuery("UpdateNote", args);
+        _provider.ExecuteCommand("UpdateNote", args);
     }
 }

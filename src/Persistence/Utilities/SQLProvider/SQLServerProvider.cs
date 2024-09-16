@@ -40,7 +40,7 @@ public class SQLServerProvider : ISQLProvider
         return dataTable;
     }
 
-    public int ExecuteNonQuery(string query, List<StoredProcedureArg>? args = null)
+    public int ExecuteCommand(string query, List<StoredProcedureArg>? args = null)
     {
         SqlCommand command = new(query) { CommandType = CommandType.StoredProcedure };
         if (args != null)

@@ -4,7 +4,7 @@ namespace Persistence.Utilities.SQLProvider;
 
 public interface ISQLProvider
 {
-    int ExecuteNonQuery(string query, List<StoredProcedureArg>? args = null);
+    int ExecuteCommand(string query, List<StoredProcedureArg>? args = null);
     object ExecuteQuery(string query, List<StoredProcedureArg>? args = null);
     object ExecuteScalar(string query, List<StoredProcedureArg>? args = null);
 }
