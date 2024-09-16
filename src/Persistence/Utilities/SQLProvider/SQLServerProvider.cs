@@ -6,12 +6,21 @@ namespace Persistence.Utilities.SQLProvider;
 
 public class SQLServerProvider : ISQLProvider
 {
-    private readonly string _connectionString;
+    private static string? _connectionString;
 
-    public SQLServerProvider(string connectionString)
+    private static SQLServerProvider? Instance;
+
+    public static SQLServerProvider GetInstance(string connectionString)
     {
-        _connectionString = connectionString;
+        if (Instance is null)
+        {
+            _connectionString = connectionString;
+            Instance = new();
+        }
+        return Instance;
     }
+
+    private SQLServerProvider() { }
 
     public object ExecuteQuery(string query, List<StoredProcedureArg>? args = null)
     {
