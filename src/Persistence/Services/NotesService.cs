@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Persistence.Exceptions;
 using Persistence.Models;
 using Persistence.Repositories.IRepositories;
@@ -15,7 +14,7 @@ public class NotesService
         _repository = repository;
     }
 
-    public Note Add(Note obj) => _repository.Add(obj);
+    public void Add(Note obj) => _repository.Add(obj);
 
     public void Delete(int id)
     {

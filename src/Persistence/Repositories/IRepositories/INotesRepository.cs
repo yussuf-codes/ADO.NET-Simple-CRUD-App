@@ -5,7 +5,7 @@ namespace Persistence.Repositories.IRepositories;
 
 public interface INotesRepository
 {
-    Note Add(Note obj);
+    void Add(Note obj);
     void Delete(int id);
     bool Exists(int id);
     IEnumerable<Note> Get();

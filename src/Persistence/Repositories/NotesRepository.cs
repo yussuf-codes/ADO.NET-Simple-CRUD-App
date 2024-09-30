@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using Persistence.Models;
@@ -13,7 +14,7 @@ public class NotesRepository : INotesRepository
         _provider = provider;
     }
 
-    public Note Add(Note obj)
+    public void Add(Note obj)
     {
         List<StoredProcedureArg> args = new()
         {
@@ -21,11 +22,7 @@ public class NotesRepository : INotesRepository
             new () { Name = "@body", Value = obj.Body }
         };
 
-        int id = (int)_provider.ExecuteScalar("PostNote", args);
-
-        Note note = Get(id);
-
-        return note;
+        _provider.ExecuteCommand("AddNote", args);
     }
 
     public void Delete(int id)
@@ -45,7 +42,7 @@ public class NotesRepository : INotesRepository
             new () { Name = "@id", Value = id }
         };
 
-        if ((char)_provider.ExecuteScalar("NoteExists", args) == '1')
+        if ((bool)_provider.ExecuteScalar("NoteExists", args))
             return true;
         return false;
     }
@@ -73,7 +70,12 @@ public class NotesRepository : INotesRepository
 
     public Note Get(int id)
     {
-        DataTable dataTable = (DataTable)_provider.ExecuteQuery("GetNote");
+        List<StoredProcedureArg> args = new()
+        {
+            new () { Name = "@id", Value = id }
+        };
+
+        DataTable dataTable = (DataTable)_provider.ExecuteQuery("GetNote", args);
 
         Note note = new Note()
         {

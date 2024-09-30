@@ -1,3 +1,10 @@
+CREATE PROCEDURE AddNote
+    @title VARCHAR(255), @body VARCHAR(max)
+AS
+    INSERT INTO dbo.Notes (dbo.Notes.Title, dbo.Notes.Body) VALUES (@title, @body)
+    SELECT SCOPE_IDENTITY();
+GO
+
 CREATE PROCEDURE DeleteNote
     @id INT
 AS
@@ -24,13 +31,6 @@ AS
     ELSE
         SET @exists = 0
     SELECT @exists;
-GO
-
-CREATE PROCEDURE AddNote
-    @title VARCHAR(255), @body VARCHAR(max)
-AS
-    INSERT INTO dbo.Notes (dbo.Notes.Title, dbo.Notes.Body) VALUES (@title, @body)
-    SELECT SCOPE_IDENTITY();
 GO
 
 CREATE PROCEDURE UpdateNote

@@ -1,26 +1,29 @@
+using System;
 using System.Data;
 using System.Collections.Generic;
+using System.Reflection;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 
 namespace Persistence.Utilities.SQLProvider;
 
 public class SQLServerProvider : ISQLProvider
 {
-    private static string? _connectionString;
+    private readonly string _connectionString;
 
-    private static SQLServerProvider? Instance;
-
-    public static SQLServerProvider GetInstance(string connectionString)
+    public SQLServerProvider()
     {
-        if (Instance is null)
-        {
-            _connectionString = connectionString;
-            Instance = new();
-        }
-        return Instance;
-    }
+        IConfigurationBuilder configurationBuilder = new ConfigurationBuilder().AddUserSecrets(Assembly.GetExecutingAssembly());
 
-    private SQLServerProvider() { }
+        IConfiguration configuration = configurationBuilder.Build();
+
+        string? connectionString = configuration["ConnectionStrings:DefaultConnection"];
+
+        if (connectionString is null)
+            throw new NullReferenceException("Connection string is null");
+
+        _connectionString = connectionString;
+    }
 
     public object ExecuteQuery(string query, List<StoredProcedureArg>? args = null)
     {
