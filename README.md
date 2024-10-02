@@ -2,7 +2,7 @@
 
 1. Create the database
 
-2. Add SQL Server connection string to user secrets
+2. Add SQL Server connection string to your user secrets
 
     ```shell
     dotnet user-secrets --project Persistence set "ConnectionStrings:DefaultConnection" "<SQL Server Connection String>"
@@ -21,19 +21,19 @@
     dotnet add Test reference Persistence
     ```
 
-5. Inside the main method, create an `ISQLProvider` instance
+5. Inside the main method, Get the `ISQLProvider` instance
 
     ```csharp
-    ISQLProvider provider = new SQLServerProvider();
+    ISQLProvider provider = SQLServerProvider.GetInstance();
     ```
 
-6. Create an `INotesRepository` instance, and inject it with the `ISQLProvider` instance
+6. Create an `INotesRepository` instance, And inject it with the `ISQLProvider` instance
 
     ```csharp
     INotesRepository repository = new NotesRepository(provider);
     ```
 
-7. Create an `NotesService` instance, and inject it with the `INotesRepository` instance
+7. Create an `NotesService` instance, And inject it with the `INotesRepository` instance
 
     ```csharp
     NotesService service = new(repository);

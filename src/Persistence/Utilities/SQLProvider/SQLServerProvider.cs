@@ -11,7 +11,9 @@ public class SQLServerProvider : ISQLProvider
 {
     private readonly string _connectionString;
 
-    public SQLServerProvider()
+    private static readonly SQLServerProvider Instance = new();
+
+    private SQLServerProvider()
     {
         IConfigurationBuilder configurationBuilder = new ConfigurationBuilder().AddUserSecrets(Assembly.GetExecutingAssembly());
 
@@ -24,6 +26,8 @@ public class SQLServerProvider : ISQLProvider
 
         _connectionString = connectionString;
     }
+
+    public static SQLServerProvider GetInstance() => Instance;
 
     public object ExecuteQuery(string query, List<StoredProcedureArg>? args = null)
     {

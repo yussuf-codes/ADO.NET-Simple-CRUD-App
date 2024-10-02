@@ -5,6 +5,8 @@ VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\Persistence.csproj", "{D39807AC-1CD6-4488-8649-C195F6328BF9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{288F8798-3D11-4068-8AB1-46C3B8769E25}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{D39807AC-1CD6-4488-8649-C195F6328BF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D39807AC-1CD6-4488-8649-C195F6328BF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D39807AC-1CD6-4488-8649-C195F6328BF9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{288F8798-3D11-4068-8AB1-46C3B8769E25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{288F8798-3D11-4068-8AB1-46C3B8769E25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{288F8798-3D11-4068-8AB1-46C3B8769E25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{288F8798-3D11-4068-8AB1-46C3B8769E25}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
