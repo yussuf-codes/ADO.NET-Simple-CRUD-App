@@ -11,7 +11,7 @@ public class SQLServerProvider : ISQLProvider
 {
     private readonly string _connectionString;
 
-    private static readonly SQLServerProvider Instance = new();
+    private static readonly SQLServerProvider _instance = new();
 
     private SQLServerProvider()
     {
@@ -27,7 +27,7 @@ public class SQLServerProvider : ISQLProvider
         _connectionString = connectionString;
     }
 
-    public static SQLServerProvider GetInstance() => Instance;
+    public static SQLServerProvider GetInstance() => _instance;
 
     public object ExecuteQuery(string query, List<StoredProcedureArg>? args = null)
     {
